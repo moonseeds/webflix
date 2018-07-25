@@ -1,0 +1,42 @@
+<div class="navbar-">
+  <img src="assets/logo.png" width="100" height="70" align="center"/>
+</div>
+<div class="col-md-6 col-md-offset-3 jumbotron">
+  <h2>Register New Account</h2>
+  <form name="rgister" #f="ngForm" (ngSubmit)="register()">
+    <div id="failure-alert" *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !isLoading}">
+      <label htmlFor="emailAddress">Login Email</label>
+      <input type="text" class="form-control" name="emailAddress"
+             [(ngModel)]="emailAddress" required/>
+      <div *ngIf="f.submitted && this.emailValidation()" class="help-block">Please enter a valid email address</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !isLoading}">
+      <label htmlFor="firstname">Forename</label>
+      <input type="text" class="form-control" name="firstname"
+             [(ngModel)]="firstname" required/>
+
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !isLoading}">
+      <label htmlFor="lastname">Surname</label>
+      <input type="text" class="form-control" name="lastname"
+             [(ngModel)]="lastname" required/>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !isLoading}">
+      <label htmlFor="password">Password</label>
+      <input type="password" class="form-control" name="password"
+             [(ngModel)]="password" required/>
+      <div *ngIf="f.submitted && this.passwordRestrictions()" class="help-block">Password should contain caps, lower, nums and be 8 char long</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !isLoading}">
+      <label htmlFor="repeatPassword">Repeat Password</label>
+      <input type="password" class="form-control" name="repeatPassword"
+             [(ngModel)]="repeatPassword" required/>
+      <div *ngIf="f.submitted && this.passwordValidation() " class="help-block">Please enter a valid repeated password</div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Register</button>
+      <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+    </div>
+  </form>
+</div>
